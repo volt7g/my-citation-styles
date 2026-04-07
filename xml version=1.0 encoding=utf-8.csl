@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="id-ID">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
   <info>
-    <title>Bioma UNDIP - Fixed Journal Format</title>
-    <id>http://www.zotero.org/styles/bioma-undip-fixed</id>
+    <title>Bioma UNDIP - Final International Format</title>
+    <id>http://www.zotero.org/styles/bioma-undip-volta-final</id>
     <author>
-      <name>Custom by Volta</name>
+      <name>Volta Custom</name>
     </author>
     <category citation-format="author-date"/>
     <updated>2026-04-07</updated>
@@ -21,10 +21,10 @@
     </names>
   </macro>
 
-  <!-- AUTHOR SHORT (CITATION) -->
+  <!-- AUTHOR SHORT -->
   <macro name="author-short">
     <names variable="author">
-      <name form="short" and="symbol" delimiter=", " initialize-with=". "/>
+      <name form="short" and="text" delimiter=", " initialize-with=". "/>
       <substitute>
         <names variable="editor"/>
         <text variable="title"/>
@@ -46,8 +46,8 @@
     </choose>
   </macro>
 
-  <!-- IN-TEXT CITATION -->
-  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year">
+  <!-- CITATION -->
+  <citation et-al-min="3" et-al-use-first="1" et-al-font-style="italic" disambiguate-add-year-suffix="true">
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
         <text macro="author-short"/>
