@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="id-ID">
   <info>
-    <title>Bioma UNDIP - English Custom</title>
-    <id>http://www.zotero.org/styles/bioma-undip-en-custom</id>
-    <link href="https://ejournal.undip.ac.id/index.php/bioma" rel="documentation"/>
+    <title>Bioma: Berkala Ilmiah Biologi (UNDIP) - Custom</title>
+    <id>http://www.zotero.org/styles/bioma-undip-custom</id>
+    <link href="https://ejournal.undip.ac.id/index.php/bioma/about/submissions#authorGuidelines" rel="documentation"/>
     <author>
-      <name>Gemini AI</name>
+      <name>Gemini AI Assistant</name>
     </author>
     <category citation-format="author-date"/>
+    <category field="biology"/>
     <updated>2026-03-25T12:00:00+00:00</updated>
   </info>
 
-  <locale xml:lang="en">
-    <terms>
-      <term name="et-al">et al.</term>
-    </terms>
-  </locale>
-
   <macro name="author">
     <names variable="author">
-      <name name-as-sort-order="all" and="text" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="never"/>
-      <et-al font-style="italic"/>
+      <name name-as-sort-order="all" and="text" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
+      <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
       <substitute>
         <names variable="editor"/>
         <text variable="title"/>
@@ -31,7 +26,6 @@
   <macro name="author-short">
     <names variable="author">
       <name form="short" and="symbol" delimiter=", " initialize-with=". "/>
-      <et-al font-style="italic"/>
       <substitute>
         <names variable="editor"/>
         <text variable="title"/>
@@ -73,23 +67,55 @@
       <text macro="author" suffix=". "/>
       <text macro="year-date" suffix=". "/>
       <choose>
-        <if type="article-journal">
-          <group delimiter=". ">
-            <text variable="title"/>
-            <text variable="container-title" font-style="italic"/>
-          </group>
-          <group prefix=". ">
-            <text variable="volume"/>
-            <text variable="issue" prefix="(" suffix=")"/>
-            <text variable="page" prefix=":"/>
-          </group>
-          <text variable="DOI" prefix=". https://doi.org/"/>
-        </if>
-        <else>
+        <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
           <group delimiter=". ">
             <text variable="title" font-style="italic"/>
             <text variable="publisher"/>
             <text variable="publisher-place"/>
+            <group prefix="PP ">
+              <text variable="page"/>
+            </group>
+          </group>
+        </if>
+        <if type="thesis">
+          <group delimiter=". ">
+            <text variable="title" font-style="italic"/>
+            <text variable="genre" prefix="[" suffix="]"/>
+            <text variable="publisher-place"/>
+            <text variable="publisher"/>
+          </group>
+        </if>
+        <else-if type="chapter paper-conference" match="any">
+          <text variable="title" suffix=". "/>
+          <group delimiter=" ">
+            <text term="in" text-case="capitalize-first" suffix=": "/>
+            <names variable="editor" suffix=". ">
+              <name name-as-sort-order="all" initialize-with=". " delimiter=", "/>
+              <label form="short" prefix=" (" suffix=")"/>
+            </names>
+            <text variable="container-title" font-style="italic" suffix=". "/>
+            <text variable="publisher-place" suffix=": "/>
+            <text variable="publisher"/>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=". ">
+            <text variable="title"/>
+            <group>
+              <text variable="container-title" font-style="italic"/>
+              <text value=", [Online] "/>
+              <text variable="volume" prefix="Volume "/>
+              <text variable="issue" prefix="(" suffix=")"/>
+              <text variable="page" prefix=", pp. "/>
+            </group>
+            <text variable="DOI" prefix="https://doi.org/"/>
+            <group prefix="[Accessed: " suffix="]">
+              <date variable="accessed">
+                <date-part name="day" suffix=" "/>
+                <date-part name="month" form="short" suffix=". "/>
+                <date-part name="year"/>
+              </date>
+            </group>
           </group>
         </else>
       </choose>
